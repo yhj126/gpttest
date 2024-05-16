@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar</title>
+    <!--CSS only-->
+    <link rel="stylesheet" href="/css/style.css">
+    <!--icons-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css"
+          href="/estilo.css"
+          th:href="@{/estilo.css}"/>
+</head>
+<!-- Flecha volver
+<i class='bx bx-left-arrow-alt'></i>
+-->
+<body>
+<div class="login">
+    <div class="login__content">
+        <div class="login_image">
+            <img src="descarga.jpeg" alt="Helou">
+        </div>
+        <div class="login__forms">
+            <form action="#" th:action="@{/registrar/add}" th:object="${usuarioRegistrado}"
+                  method="post" class="login__create" id="login-up">
+                <h1 class="login_title">Create Account</h1>
+
+
+                <!--Nombre-->
+                <div class="login_box">
+                    <i class='bx bx-user login__icon'></i>
+                    <input th:field="*{nombre}" type="text" max="30" placeholder="Username" class="login_input"
+                           required>
+                    <div class="error" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+                </div>
+
+                <!--Email-->
+                <div class="login_box">
+                    <i class='bx bx-at login__icon'></i>
+                    <input th:field="*{correo}" type="email" max="30" placeholder="Email" class="login_input" required>
+                    <div class="error" th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}"></div>
+                </div>
+
+                <!-- Conraseña-->
+                <div class="login_box">
+                    <i class='bx bx-lock-alt login__icon'></i>
+                    <input th:field="*{pwd}" type="password" max="30" placeholder="Password" class="login_input"
+                           required>
+                    <div class="error" th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></div>
+                </div>
+
+                <!-- Repetir conraseña
+                <div class="login_box">
+                    <i class='bx bx-lock-alt login__icon'></i>
+                    <input th:field="*{passwordval}"type="password" max="30" placeholder="Password" class="login_input" required>
+                    <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                </div>
+-->
+                <!--Submit-->
+                <input type="submit" value=" Sign Up" class="login__button">
+
+                <!--Cuenta existente-->
+                <div>
+                        <span class="login__account">
+                            Already have an Account?
+                        </span>
+                    <span class="login_signin" id="sign-in">
+                            <a href="login">Sign In</a>
+                        </span>
+                </div>
+
+                <div class="login__social">
+                    <a href="https://www.facebook.com/?locale=es_ES" class="login_social-icon">
+                        <i class='bx bxl-facebook'></i>
+                    </a>
+                    <a href="https://twitter.com/?lang=es" class="login_social-icon">
+                        <i class='bx bxl-twitter'></i>
+                    </a>
+                    <a href="https://www.google.com/intl/es/gmail/about/" class="login_social-icon">
+                        <i class='bx bxl-google'></i>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+
+</script>
+</body>
+</html>

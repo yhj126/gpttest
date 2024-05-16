@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragmentos/base}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festivales a no a la venta</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script>
+        function filtroNombres() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                console.log(td)
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<!--<style>
+    form {
+    background-color: #990000;
+    width: 300px;
+    height: 44px;
+    border-radius: 5px;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+}
+
+input {
+    all: unset;
+    font: 18px system-ui;
+    color: #fff;
+    height: 100%;
+    width: 100%;
+    padding: 6px 10px;
+}
+
+::placeholder {
+    color: #fff;
+    opacity: 0.7;
+}
+
+
+
+button {
+    all: unset;
+    cursor: pointer;
+    width:44px;
+    height:44px;
+}</style>-->
+<body>
+<div layout:fragment="content">
+
+    <div class="pagina_generica " >
+
+        <!-- titulo y barra de busqueda-->
+        <form class="margen_encabezados" action="#" method="get">
+            <table>
+                <td>
+                    <input type="text" class="search-bar table_create" id="myInput" onkeyup="filtroNombres()"
+                           placeholder="Busca por nombre de festival.." title="Type in a name">
+                </td>
+            </table>
+        </form>
+
+
+        <!--lista de elementos-->
+
+        <div class="table_create campo_de_lista_gestores ">
+            <div th:if="${#lists.isEmpty(festivales)}">
+                No hay festivales próximos.
+            </div>
+            <table id="myTable" class="table formu" th:unless="${#lists.isEmpty(festivales)}">
+                <thead>
+                <tr class="header">
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="festival: ${festivales}">
+                    <td th:text="${festival.nombre}"></td>
+                    <td th:text="${festival.descripcion}"></td>
+                    <td>
+                        <div class="form_buton_align">
+                            <a th:href="@{/festival/masInfoNoVenta/{nombre}(nombre=${festival.nombre})}">
+                                <button type="button" class="login__button form_buton_space">Más info.</button>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+
+
+
+
+    </div>
+</div>
+</div>
+
+</body>
+</html>

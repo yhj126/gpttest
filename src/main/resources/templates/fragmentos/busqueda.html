@@ -1,0 +1,13 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <form  action="#" th:action="@{/templates/festival/listVenta}"
+           th:object="${festival}" method="get">
+        <table>
+            <td>
+                <input type="text" placeholder="Buscar festival..." th:field="*{nombre}" maxlength="30" required>
+            </td>
+            <td>
+                <input type="submit" value="Buscar"/>
+            </td>
+        </table>
+    </form>
+</div>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragmentos/base}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar los Contratos del Artista</title>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="pagina_generica">
+        <h1 class="margen_encabezados">Lista de Contratos del Artista</h1>
+
+        <div class="table_create campo_de_lista_gestores">
+            <table class="table formu">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Tasa</th>
+                    <th scope="col">Firma</th>
+                    <th scope="col">Inicio</th>
+                    <th scope="col">Fin</th>
+                    <th scope="col">Número de Actuaciones</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">ID Artista</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="contrato: ${contratosartista}">
+                    <td th:text="${contrato.id}"></td>
+                    <td th:text="${contrato.tasa}"></td>
+                    <td th:text="${contrato.fechaFirma}"></td>
+                    <td th:text="${contrato.fechaIni}"></td>
+                    <td th:text="${contrato.fechaFin}"></td>
+                    <td th:text="${contrato.numActuaciones}"></td>
+                    <td th:text="${contrato.descripcion}"></td>
+                    <td th:text="${contrato.idArtista}"></td>
+                    <td><a th:href="@{/contrato/update/{id}(id=${contrato.id})}">
+                        <button type="button" class="login__button form_buton_space form_buton_align">Editar</button>
+                    </a>
+                    </td>
+                    <td><a th:href="@{/contrato/delete/{id}(id=${contrato.id})}">
+                        <button type="button" class="login__button form_buton_space form_buton_align">Eliminar</button>
+                    </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <a th:href="@{/contrato/addAArtista/{idArtista}(idArtista=${idArtista})}">
+                <button type="button" class="login__button margen_encabezados">Añadir Contrato al Artista</button>
+            </a>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

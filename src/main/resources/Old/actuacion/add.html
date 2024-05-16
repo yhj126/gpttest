@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Crear nueva actuación</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<style>
+    .center-screen {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+    .formulario{
+        display: inline-block;
+        text-align: left;
+    }
+    input[type=submit]{
+        background-color: #53a453;
+        border-radius: 5px ;
+        border-color: #53a453;
+        color: white;
+        padding: 6px 16px;
+        text-decoration: none;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+</style>
+<body>
+<br>
+<div class="center-screen">
+    <h2>Añadir nueva actuación</h2>
+    <form class="formulario" action="#" th:action="@{/Old/actuacion/add}"
+          th:object="${actuacion}" method="post">
+        <table>
+            <tr>
+                <td><label>Inicio</label></td>
+                <td><input type="time" th:field="*{inicioActuacion}" required/></td>
+            </tr>
+            <tr>
+                <td><label>Fin</label></td>
+                <td><input type="time" th:field="*{finActuacion}" required/></td>
+            </tr>
+            <tr>
+                <td><label>Fecha</label></td>
+                <td><input type="date" th:field="*{fechaActuacion}" required /></td>
+            </tr>
+            <tr>
+                <td><label>Lugar</label></td>
+                <td><input max="50" type="text" th:field="*{lugar}" required /></td>
+            </tr>
+            <tr>
+                <td><label>Precio Contrato</label></td>
+                <td><input min="0" type="number" th:field="*{precioContrato}" step="0.01" required /></td>
+            </tr>
+            <tr>
+                <td><label>Nombre festival</label></td>
+                <td><input max="10" type="text" th:field="*{nombreFestival}" required /></td>
+            </tr>
+            <tr>
+                <td><label>Id Contrato</label></td>
+                <td><input max="20" type="text" th:field="*{idContrato}" required/></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Agregar actuación" /></td>
+                <td><a href="list">
+                    <button type="button" class="btn btn-danger">Cancelar</button>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

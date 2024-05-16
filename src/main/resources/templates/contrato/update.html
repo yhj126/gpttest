@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragmentos/base}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Contrato Artista</title>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <div class="pagina_generica margen_encabezados contenedor">
+        <div class="login__content">
+            <div class="login__forms">
+                <form class="login__register" action="#" th:action="@{/contrato/update}"
+                      th:object="${contrato}" method="post">
+                    <h1 class="login_title">Modificación del contrato</h1>
+
+                    <div class="compra_field">
+                        <p class="login_input">ID</p>
+                        <div class="login_box">
+                            <input class="login_input" required type="number" readonly="readonly"
+                                                      th:field="${contrato.id}"/></div>
+                    </div>
+
+                    <div class="compra_field">
+                        <p class="login_input">Tasa</p>
+                        <div class="login_box">
+                            <input type="number" th:field="*{tasa}" step="0.01" readonly
+                                                      class="login_input" required/></div>
+                    </div>
+
+                    <div class="compra_field">
+                        <p class="login_input">Firma</p>
+                        <div class="login_box">
+                            <input type="date" th:field="*{fechaFirma}" class="login_input"
+                                                      required/></div>
+                    </div>
+
+                    <div class="compra_field">
+                        <p class="login_input">Inicio</p>
+                        <div class="login_box">
+                            <input type="date" th:field="*{fechaIni}" class="login_input" required/>
+                        </div>
+                    </div>
+
+                    <div class="compra_field">
+                        <p class="login_input">Fin</p>
+                        <div class="login_box">
+                            <input type="date" th:field="*{fechaFin}" class="login_input" required/>
+                        </div>
+                    </div>
+                    <div class="compra_field">
+                        <p class="login_input">Número de Actuaciones</p>
+                        <div class="login_box">
+                            <input min="1" type="number" th:field="*{numActuaciones}"
+                                                      class="login_input" required/>
+                        </div>
+                    </div>
+                    <div class="compra_field">
+                        <p class="login_input">Descripción</p>
+                        <div class="login_box">
+                            <input maxlength="100" type="text" th:field="*{descripcion}"
+                                                      class="login_input"   placeholder="Descripción del contrato" required/>
+                        </div>
+                    </div>
+
+                    <div class="compra_field">
+                        <p class="login_input">Id Artista</p>
+                        <div class="login_box">
+                            <input type="number" min="0"  readonly th:field="*{idArtista}" class="login_input"
+                                                      required/>
+                        </div>
+                    </div>
+
+                    <input type="submit" value="Modificar contrato" class="login__button"/>
+
+
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

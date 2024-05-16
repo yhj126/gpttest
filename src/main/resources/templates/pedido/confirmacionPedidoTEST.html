@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragmentos/base}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación del pedido</title>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+    <script>
+
+    function createPDF() {
+    // Elemento que deseas convertir a PDF
+    const element = document.getElementById("pdf");
+        var opt = {
+            margin: 0,
+            filename: 'entradas.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2,useCORS: true },
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'p' }
+        };
+    // Generar el PDF
+    html2pdf()
+    .from(element)
+    .set(opt)
+    .save();
+    }
+
+</script>
+
+</head>
+
+<body>
+
+<div layout:fragment="content">
+    <div class="pagina_generica">
+        <div  th:object="${festivalDatos}">
+                    <div id="pdf">
+                    <h1 th:text="${'Pedido realizado con exito del festival ' + festivalDatos}" class="margen_encabezados"></h1>
+                    <table class="table table_create">
+                        <thead class="table-info" th:object="${pedido}" >
+                        <tr>
+                            <th>Correo:</th>
+                            <td th:text="${pedido.correo}"></td>
+                        </tr>
+                        <tr>
+                            <th>Cantidad entradas:</th>
+                            <td th:text="${pedido.cantidadEntradas}"></td>
+
+                        </tr>
+
+
+                        <div th:each="entrada: ${entradas} ">
+                            <tr>
+                                <th><br></th>
+                                <td><br></td>
+                            </tr>
+                            <tr>
+                                <th>Numero de entrada:</th>
+                                <td th:text="${entrada.numero}"></td>
+                            </tr>
+                            <tr>
+                                <th>Tipo entrada:</th>
+                                <td th:text="${entrada.tipo}"></td>
+                            </tr>
+
+                            <tr>
+                                <th>Precio:</th>
+                                <td th:text="${entrada.precio + '€'}"></td>
+                            </tr>
+                            <tr>
+                                <th><br></th>
+                                <td><img id='barcode' th:src="@{https://api.qrserver.com/v1/create-qr-code/(data=${entrada.numero},size='100x100')}" alt="" title="HELLO" width="50" height="50" /></td>
+                            </tr>
+
+
+                        </div>
+                        <tr>
+                            <th><br></th>
+
+                            <td><br></td>
+                        </tr>
+                        <tr>
+
+                            <th>Precio total:</th>
+                            <td th:text="${precioTotal + '€'}"> </td>
+                        </tr>
+                        </thead>
+                    </table>
+                    </div>
+
+                </div>
+        <div class="content_button">
+
+            <input type="button"  onclick="createPDF()" value="Descargar tickets" class="login__button">
+            <a href="/" class="login__button">Indice</a>
+            <a href="/festival/listVenta" class="login__button">Festivales a la venta</a>
+            <a href="/festival/listNoVenta" class="login__button">Próximos</a>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
+

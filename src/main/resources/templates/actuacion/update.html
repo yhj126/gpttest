@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragmentos/base}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modificar Actuación</title>
+
+  <!--icons-->
+  <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
+
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+<div layout:fragment="content">
+  <div class="center-screen">
+    <h2>Modificación de la actuación</h2>
+    <form class="formulario" action="#" th:action="@{/actuacion/update}"
+          th:object="${actuacion}" method="post">
+      <table>
+        <tr>
+          <td><label>Id Contrato</label></td>
+          <td><input type="number" th:field="*{idContrato}" required /></td>
+        </tr>
+        <tr>
+          <td colspan="2"><input type="submit" value="Modificar actuación" /></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar Usuario Registrado</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<style>
+    .center{
+        display: flex;
+        align-items: center;
+        text-align: center;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+</style>
+<body>
+<br>
+<div class="center">
+    <h1>Lista de Usuarios Registrados</h1>
+    <table class="table">
+        <thead class="table-info">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Contraseña</th>
+            <th>Correo</th>
+            <th ></th>
+            <th ></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="usuarioRegistrado: ${usuariosRegistrados}">
+            <td th:text="${usuarioRegistrado.id}"></td>
+            <td th:text="${usuarioRegistrado.nombre}"></td>
+            <td th:text="${usuarioRegistrado.pwd}"></td>
+            <td th:text="${usuarioRegistrado.correo}"></td>
+            <td ><a th:href="@{/usuarioRegistrado/update/{id}(id=${usuarioRegistrado.id})}">
+                <button type="button" class="btn btn-secondary">Editar</button>
+            </a>
+            </td>
+            <td><a th:href="@{/usuarioRegistrado/delete/{id}(id=${usuarioRegistrado.id})}">
+                <button type="button" class="btn btn-primary">Eliminar</button>
+            </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <a href="add">
+            <button type="button" class="btn btn-info">Añadir Usuario Registrado</button>
+        </a>
+        <a href="/static">
+            <button type="button" class="btn btn-info">Volver</button>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

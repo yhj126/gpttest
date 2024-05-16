@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar pedido</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<style>
+    .center{
+        display: flex;
+        align-items: center;
+        text-align: center;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+</style>
+<body>
+<br>
+<div class="center">
+    <h1>Lista de pedidos</h1>
+    <table class="table">
+        <thead class="table-info">
+        <tr>
+            <th>ID</th>
+            <th>Correo</th>
+            <th>Fecha</th>
+            <th>Cantidad</th>
+            <th>Usuario</th>
+            <th ></th>
+            <th ></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pedido: ${pedidos}">
+            <td th:text="${pedido.idPedido}"></td>
+            <td th:text="${pedido.correo}"></td>
+            <td th:text="${pedido.fecha}"></td>
+            <td th:text="${pedido.cantidadEntradas}"></td>
+            <td th:text="${pedido.idUsuario}"></td>
+            <td ><a th:href="@{/Old/pedido/update/{id}(id=${pedido.idPedido})}">
+                <button type="button" class="btn btn-secondary">Editar</button>
+            </a>
+            </td>
+            <td><a th:href="@{/Old/pedido/delete/{id}(id=${pedido.idPedido})}">
+                <button type="button" class="btn btn-primary">Eliminar</button>
+            </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <a href="add">
+            <button type="button" class="btn btn-info">Añadir pedido</button>
+        </a>
+        <a href="/static">
+            <button type="button" class="btn btn-info">Volver</button>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

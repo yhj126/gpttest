@@ -1,0 +1,11 @@
+<div class="loggeduser" th:object="${session}" xmlns:th="http://www.thymeleaf.org">
+    <nav th:if="*{user == null}">
+        <a href="/login" class="login__button"> Iniciar Sesión</a>
+        <a href="/usuarioRegistrado/add" class='signup__button'>Registrarse</a>
+    </nav>
+    <nav th:unless="*{user == null}">
+        <span th:text="*{user.username}" class='username'></span>
+        <a href="/logout" class='signup__button'>Salir</a>
+    </nav>
+</div>
+

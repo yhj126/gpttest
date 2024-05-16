@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar Contrato</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<style>
+    .center{
+        display: flex;
+        align-items: center;
+        text-align: center;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+</style>
+<body>
+<br>
+<div class="center">
+    <h1>Lista de Contratos</h1>
+    <table class="table">
+        <thead class="table-info">
+        <tr>
+            <th>ID</th>
+            <th>Tasa</th>
+            <th>Firma</th>
+            <th>Inicio</th>
+            <th>Fin</th>
+            <th>Número de Actuaciones</th>
+            <th>Descripción</th>
+            <th>ID Artista</th>
+            <th ></th>
+            <th ></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="contrato: ${contratos}">
+            <td th:text="${contrato.id}"></td>
+            <td th:text="${contrato.tasa}"></td>
+            <td th:text="${contrato.fechaFirma}"></td>
+            <td th:text="${contrato.fechaIni}"></td>
+            <td th:text="${contrato.fechaFin}"></td>
+            <td th:text="${contrato.numActuaciones}"></td>
+            <td th:text="${contrato.descripcion}"></td>
+            <td th:text="${contrato.idArtista}"></td>
+            <td ><a th:href="@{/Old/contrato/update/{id}(id=${contrato.id})}">
+                <button type="button" class="btn btn-secondary">Editar</button>
+            </a>
+            </td>
+            <td><a th:href="@{/Old/contrato/delete/{id}(id=${contrato.id})}">
+                <button type="button" class="btn btn-primary">Eliminar</button>
+            </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <a href="add">
+            <button type="button" class="btn btn-info">Añadir Contrato</button>
+        </a>
+        <a href="/static">
+            <button type="button" class="btn btn-info">Volver</button>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

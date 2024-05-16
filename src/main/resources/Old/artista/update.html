@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Modificar artista</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<style>
+  .center-screen {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      min-height: 100vh;
+      flex-direction: column;
+  }
+  .formulario{
+      display: inline-block;
+      text-align: left;
+  }
+  input[type=submit]{
+    background-color: #53a453;
+    border-radius: 5px ;
+    border-color: #53a453;
+    color: white;
+    padding: 6px 16px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+</style>
+<body>
+<br>
+<div class="center-screen">
+  <h2>Modificación del artista</h2>
+  <form class="formulario" action="#" th:action="@{/Old/artista/update}"
+        th:object="${artista}" method="post">
+    <table>
+      <tr>
+        <td><label>ID </label></td>
+        <td><input required type="number" readonly="readonly" th:field="${artista.id}"/></td>
+      </tr>
+      <tr>
+        <td><label>Nombre </label></td>
+        <td><input max="30" type="text" th:field="*{nombre}" readonly/></td>
+      </tr>
+      <tr>
+        <td><label>Tipo de Música </label></td>
+        <td>
+          <label>
+            <select th:field="*{tipoMusica}">
+              <option th:each="tipoMusica: ${tipoMusicaList}"
+                      th:value="${tipoMusica}"
+                      th:text="${tipoMusica}">
+              </option>
+            </select>
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td><label>Biografía </label></td>
+        <td><input max="50" type="text" th:field="*{biografia}" required /></td>
+      </tr>
+      <tr>
+        <td><label>Caché </label></td>
+        <td><input type="number"  min="0" th:field="*{cache}" step="0.01" required /></td>
+      </tr>
+
+      <tr>
+        <td colspan="2"><input type="submit" value="Modificar artista" /></td>
+        <td><a href="../list"><button type="button" class="btn btn-danger">Cancelar</button></a></td>
+      </tr>
+    </table>
+  </form>
+</div>
+</body>
+</html>

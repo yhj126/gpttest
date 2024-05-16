@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragmentos/base}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realizar un pedido</title>
+
+    <!--icons-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script>
+        function calcularPrecio(precio) {
+            var cantidad = document.getElementById("cantidad").valueAsNumber;
+            let total = cantidad * precio
+            total = total.toFixed(2)
+            document.getElementById("calculoTotal").textContent = total + ' €';
+
+
+        }
+
+        function mostrarPopup() {
+            var correo = document.querySelector('input[name="correo"]').value;
+            var cantidad = parseInt(document.getElementById('cantidad').value);
+
+            // Validar si el correo está relleno y la cantidad es mayor que cero
+            if (correo !== "" && cantidad > 0) {
+                document.getElementById('myModal').style.display = "block";
+            } else {
+                // Mostrar un mensaje de error o realizar alguna acción adecuada
+                alert("Por favor, complete el correo y asegúrese de que la cantidad sea mayor que cero.");
+            }
+
+        }
+
+        function enviarFormulario() {
+            document.querySelector('.login__register').submit();
+        }
+
+        function autocompletar() {
+            document.getElementById('numt').value = "1234 5678 90 1234";
+            document.getElementById('cvv').value = "123";
+            document.getElementById('mmyy').value = "12/34";
+        }
+
+    </script>
+</head>
+
+<body>
+
+<div layout:fragment="content">
+    <div class="pagina_generica margen_encabezados contenedor">
+        <div class="login__content">
+            <div class="login__forms">
+                <form th:action="@{/pedido/comprar}"
+                      th:object="${pedido}" method="post" class="login__register" onsubmit="return false">
+
+                    <h1 class="login_title "> Comprar entradas </h1>
+
+
+                    <!--Correo-->
+                    <div class="compra_field">
+                        <p class="login_input">Correo electrónico</p>
+                        <div class="login_box">
+                            <input type="email" placeholder="ej. manoloLopez@gmail.com"
+                                   class="login_input" th:field="*{correo}" required/>
+                        </div>
+                    </div>
+
+                    <!--Cantidad-->
+                    <div class="compra_field">
+                        <p class="login_input">Cantidad</p>
+                        <div class="login_box">
+                            <input th:data-price="${precio}"
+                                   onchange="calcularPrecio(this.getAttribute('data-price'))" id="cantidad" min="1"
+                                   type="number" th:value="${cantidadEntradas != null ? cantidadEntradas : 1}"
+                                   th:field="*{cantidadEntradas}" class="login_input" max="10" required/>
+                        </div>
+                    </div>
+                    <div class="compra_field">
+                        <p class="login_input">Total</p>
+                        <div class="login_box">
+                            <p id="calculoTotal" class="login_input"></p>
+                        </div>
+                    </div>
+
+                    <!--POP UP De pago-->
+                    <div id="myModal" class="modal">
+                        <div class="modal-content login__register">
+                            <h1 class="margen_encabezados">Pasarela de pago</h1>
+                            <div >
+                                <div class="compra_field">
+                                    <p class="login_input">Número de tarjeta</p>
+                                    <div class="login_box">
+                                        <input class="login_input"  type="text" id="numt" required/>
+                                    </div>
+                                </div>
+                                <div class="compra_field">
+                                    <p class="login_input">CVV</p>
+                                    <div class="login_box">
+                                        <input class="login_input"  type="text" id="cvv" required/>
+                                    </div>
+                                </div>
+
+                                <div class="compra_field">
+                                    <p class="login_input">Fecha de caducidad</p>
+                                    <div class="login_box">
+                                        <input class="login_input" placeholder="MM/AA" type="text"id="mmyy" required/>
+                                    </div>
+                                </div>
+
+                                <input type="button" onclick="autocompletar()" value="Autocompletar datos"
+                                       class="login__button">
+                                <input type="submit" value="Pagar" class="login__button" onclick="enviarFormulario()">
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <input type="submit" value="Ir al pago" class="login__button" id="myBtn" onclick="mostrarPopup()">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

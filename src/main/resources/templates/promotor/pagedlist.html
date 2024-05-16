@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragmentos/base}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Gestionar promotores</title>
+    <meta charset="UTF-8"/>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<div layout:fragment="content">
+    <div th:with="promotores=${promotorPaged[__${selectedPage}__]}" class="pagina_generica">
+        <h1 class="margen_encabezados">Lista de promotores</h1>
+        <div class=" campo_de_lista_gestores table_create">
+            <table class="table formu ">
+                <thead class="table-info">
+                <tr>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Pwd</th>
+                    <th scope="col">Entidad</th>
+                    <th scope="col">DNI</th>
+                    <th scope="col">Tipo de organizacion</th>
+                    <th scope="col">Fecha inicio relacion</th>
+                    <th scope="col">Fecha fin relacion</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="promotor : ${promotores}">
+                    <td th:text="${promotor.usuario}"></td>
+                    <td th:text="${promotor.nombre}"></td>
+                    <td th:text="${promotor.pwd}"></td>
+                    <td th:text="${promotor.entidad}"></td>
+                    <td th:text="${promotor.dni}"></td>
+                    <td th:text="${promotor.tipoOrg}"></td>
+                    <td th:text="${promotor.inicioRelacion}"></td>
+                    <td th:text="${promotor.finRelacion}"></td>
+                    <td><a th:href="@{/promotor/update/{usuario}(usuario=${promotor.usuario})}">
+                        <button type="button" class="login__button form_buton_space  form_buton_align">Editar</button>
+                    </a>
+                    </td>
+                    <td><a th:href="@{/promotor/delete/{usuario}(usuario=${promotor.usuario})}">
+                        <button type="button" class="login__button form_buton_space  form_buton_align">Eliminar</button>
+                    </a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+
+        </div>
+        <div class="margen_encabezados">
+            <nav aria-label="Seleccion de pagina en listado de promotores">
+                <ul class="pagination-nav list_no_points">
+                    <li th:class="page-item" th:if="${#lists.size(promotorPaged) > 0} "
+                        th:each="pageNumber : ${pageNumbers}" th:classappend="${pageNumber==selectedPage+1} ? active">
+                        <a th:href="@{/promotor/pagedlist?page={sele}(sele=${pageNumber-1})}"
+                           th:text=${pageNumber}
+                           th:class="pagination-button " >
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div>
+            <a href="add">
+                <button type="button" class="login__button">Añadir promotor</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

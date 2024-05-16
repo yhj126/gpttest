@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Totfest</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
+</head>
+<body>
+<header>
+  <div class="container">
+    <!--Logo de TotFest-->
+    <div class="logreg_box">
+      <a onclick="history.go(-1)">
+        <i class='bx bx-arrow-back login__icon'></i>
+      </a>
+      <p class="logo">Totfest</p>
+    </div>
+
+    <div th:insert="~{fragmentos/nav}"></div>
+
+  </div>
+</header>
+<div layout:fragment="content">
+
+</div>
+</body>
+</html>

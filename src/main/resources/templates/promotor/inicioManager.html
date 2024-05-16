@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragmentos/base}" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promotor</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<div layout:fragment="content">
+<div class="pagina_generica">
+    <h1 th:text="${'Bienvenido ' + promotor}" class="margen_encabezados"></h1>
+    <div class="content_button">
+        <a href="/festival/listMisFestivales" class="login__button">Gestionar mis festivales</a>
+        <a href="/festival/list" class="login__button">Festivales</a>
+    </div>
+</div>
+</div>
+</body>
+</html>

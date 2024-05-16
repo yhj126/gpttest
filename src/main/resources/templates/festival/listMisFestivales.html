@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragmentos/base}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar mis festivales</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="pagina_generica">
+        <h1 class="margen_encabezados">Lista de mis Festival</h1>
+        <div class="table_create campo_de_lista_gestores ">
+            <div th:if="${#lists.isEmpty(festivales)}">
+                No hay festivales
+            </div>
+            <table class="table formu" th:unless="${#lists.isEmpty(festivales)}">
+                <!--*******************************encabezados de la tabla**********************************-->
+                <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Localización</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Audiencia</th>
+                    <th scope="col">Capacidad</th>
+                    <th scope="col">Edad minima</th>
+                    <th scope="col">En venta</th>
+                    <th scope="col">Fecha Inicio</th>
+                    <th scope="col">Fecha Fin</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <!--*******************************elementos de la tabla**********************************-->
+                <tbody>
+                <tr th:each="festival: ${festivales}">
+                    <td th:text="${festival.nombre}"></td>
+                    <td th:text="${festival.localizacion}"></td>
+                    <td th:text="${festival.tipoFestival}"></td>
+                    <td th:text="${festival.descripcion}"></td>
+                    <td th:text="${festival.audiencia}"></td>
+                    <td th:text="${festival.capacidad}"></td>
+                    <td th:text="${festival.minimoEdad}"></td>
+                    <td th:text="${festival.enVenta}"></td>
+                    <td th:text="${festival.fechaIni}"></td>
+                    <td th:text="${festival.fechaFin}"></td>
+                    <td>
+                        <div class="form_buton_align">
+                            <a th:href="@{/festival/update/{nombre}(nombre=${festival.nombre})}">
+                                <button type="button" class="login__button form_buton_space">Editar</button>
+                            </a>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="form_buton_align">
+                            <a th:href="@{/festival/delete/{nombre}(nombre=${festival.nombre})}">
+                                <button type="button" class="login__button form_buton_space">Eliminar</button>
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form_buton_align">
+                            <a th:href="@{/actuacion/listActuaciones/{nombre}(nombre=${festival.nombre})}">
+                                <button type="button" class="login__button form_buton_space">Actuaciones</button>
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form_buton_align">
+                            <a th:href="@{/tipoEntrada/listPromotor/{nombre}(nombre=${festival.nombre})}">
+                                <button type="button" class="login__button form_buton_space">Tipos de Entradas</button>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <a href="add">
+                <button type="button" class="login__button margen_encabezados">Añadir Festival</button>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

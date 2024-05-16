@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar</title>
+    <!--CSS only-->
+    <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="/css/styles.css" th:href="@{/css/styles.css}">
+    <!--icons-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script>
+        function validarFormulario() {
+            var nombre = document.querySelector('input[name="nombre"]').value;
+            var correo = document.querySelector('input[name="correo"]').value;
+            var password = document.getElementById('pwd').value;
+            var passwordRepeat = document.getElementById('passwordval').value;
+
+            if (nombre === '' || correo === '' || password === '' || passwordRepeat === '') {
+                // No muestra el pop-up si alguno de los campos está vacío
+                return false;
+            }
+
+            if (password !== passwordRepeat) {
+                // Muestra un mensaje de error si las contraseñas no coinciden
+                document.getElementById('passwordMismatchError').textContent = "Las contraseñas no coinciden.";
+                return false; // Evita que el formulario se envíe
+            }
+
+            // Muestra el pop-up si todos los campos están llenos y las contraseñas coinciden
+            document.getElementById('confirmMail').textContent = correo;
+            document.getElementById('myModal').style.display = "block";
+
+            return false; // Evita que el formulario se envíe
+        }
+        function enviarFormulario() {
+            document.querySelector('.login__create').submit();
+        }
+
+    </script>
+</head>
+
+<body>
+<header>
+    <div class="contenedor">
+        <!--Logo de TotFest-->
+        <div class="imagen_de_login">
+            <div class="logreg_box">
+                <a href="../">
+                    <i class='bx bx-arrow-back login__icon'></i>
+                </a>
+                <p class="logo">Totfest</p>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="pagina_generica margen_encabezados">
+    <div class="login__content">
+        <div class="login__forms">
+            <form action="@{/usuarioRegistrado}" th:action="@{/usuarioRegistrado/add}" th:object="${usuarioRegistrado}"
+                  method="post" class="login__create" onsubmit="return validarFormulario()">
+                <h1 class="login_title">Crear cuenta</h1>
+
+                <!--Nombre-->
+                <div class="login_box1">
+                    <i class='bx bx-user login__icon'></i>
+                    <input th:field="*{nombre}" type="text" max="30" placeholder="Nombre de usuario" class="login_input"
+                           required>
+                    <div class="error" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+                </div>
+
+                <!--Email-->
+                <div class="login_box1">
+                    <i class='bx bx-at login__icon'></i>
+                    <input th:field="*{correo}" type="email" max="30" placeholder="Email" class="login_input" required>
+                    <div class="error" th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}"></div>
+                </div>
+
+                <!-- Contraseña-->
+                <div class="login_box1">
+                    <div>
+                        <i class='bx bx-lock-alt login__icon'></i>
+                        <input th:field="*{pwd}" type="password" max="30" placeholder="Contraseña" class="login_input"
+                               required>
+                    </div>
+
+                    <div class="error" th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></div>
+                    <div class="error" id="passwordMismatchError"></div>
+                </div>
+
+
+                <!-- Repetir contraseña-->
+                <div class="login_box1">
+                    <div>
+                        <i class='bx bx-lock-alt login__icon'></i>
+                        <input type="password" id=passwordval max="30" placeholder="Repite contraseña" class="login_input" required>
+                    </div>
+
+                </div>
+
+                <!--POP UP De registro-->
+                <div id="myModal" class="modal">
+                    <div class="modal-content login__register">
+                        <h1 class="margin">Confirmación</h1>
+                        <h4>Se ha creado correctamente la cuenta de usuario con el correo:</h4>
+                        <h4 id="confirmMail"></h4>
+                        <p>Se ha enviado un correo de activación de cuenta. Compruebe su bandeja de spam</p>
+                        <input type="submit" value="Aceptar" class="login__button"  onclick="enviarFormulario()">
+                    </div>
+                </div>
+
+                <!--Submit-->
+                <input type="submit" value=" Sign Up" class="login__button" id="myBtn">
+
+                <!--Cuenta existente-->
+                <div>
+                        <span class="login__account">
+                             ¿Ya tienes una cuenta?
+                        </span>
+                    <span class="login_signin" id="sign-in">
+                            <a th:href="@{../login}">Inicia  sesión</a>
+                        </span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

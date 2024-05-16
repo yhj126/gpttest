@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar promotores</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<style>
+    .center{
+        display: flex;
+        align-items: center;
+        text-align: center;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+</style>
+<body>
+<br>
+<div class="center">
+    <h1>Lista de promotores</h1>
+    <table class="table">
+        <thead class="table-info">
+        <tr>
+            <th>Usuario</th>
+            <th>Nombre</th>
+            <th>Pwd</th>
+            <th>Entidad</th>
+            <th>DNI</th>
+            <th>Tipo de organizacion</th>
+            <th>Fecha inicio relacion</th>
+            <th>Fecha fin relacion</th>
+            <th ></th>
+            <th ></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="promotor: ${promotores}">
+            <td th:text="${promotor.usuario}"></td>
+            <td th:text="${promotor.nombre}"></td>
+            <td th:text="${promotor.pwd}"></td>
+            <td th:text="${promotor.entidad}"></td>
+            <td th:text="${promotor.dni}"></td>
+            <td th:text="${promotor.tipoOrg}"></td>
+            <td th:text="${promotor.inicioRelacion}"></td>
+            <td th:text="${promotor.finRelacion}"></td>
+            <td ><a th:href="@{/Old/promotor/update/{usuario}(usuario=${promotor.usuario})}">
+                <button type="button" class="btn btn-secondary">Editar</button>
+            </a>
+            </td>
+            <td><a th:href="@{/Old/promotor/delete/{usuario}(usuario=${promotor.usuario})}">
+                <button type="button" class="btn btn-primary">Eliminar</button>
+            </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <a href="add">
+            <button type="button" class="btn btn-info">Añadir promotor</button>
+        </a>
+        <a href="/static">
+            <button type="button" class="btn btn-info">Volver</button>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

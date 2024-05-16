@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragmentos/base}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festivales a la venta</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <div th:with="festivalesP=${festivalPaged[__${selectedPage}__]}" class="pagina_generica">
+
+
+        <!--lista de elementos-->
+        <div class="table_create campo_de_lista_gestores">
+            <div th:if="${#lists.isEmpty(festivalesP)}">
+                No hay festivales a la venta en este momento
+            </div>
+            <table class="table formu" th:unless="${#lists.isEmpty(festivalesP)}">
+
+                <!--*******************************encabezados de la tabla**********************************-->
+
+                <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+
+                <!--*******************************elementos de la tabla**********************************-->
+
+                <tbody>
+                <tr th:each="festival: ${festivalesP}">
+                    <td th:text="${festival.nombre}"></td>
+                    <td th:text="${festival.descripcion}"></td>
+                    <td>
+                        <div class="form_buton_align">
+                        <a th:href="@{/festival/masInfoVenta/{nombre}(nombre=${festival.nombre})}">
+                        <button type="button" class="login__button form_buton_space form_buton_align">Más info.</button>
+                    </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form_buton_align">
+
+
+                        <a th:href="@{/tipoEntrada/list/{nombre}(nombre=${festival.nombre})}">
+                        <button type="button" class="login__button form_buton_space ">Comprar</button>
+                        </a>
+                        </div>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <!--paginacion-->
+
+        <div class="margen_encabezados">
+            <nav aria-label="Seleccion de pagina en listado de festivales a la venta">
+                <ul class="pagination-nav list_no_points">
+                    <li th:class="page-item" th:if="${#lists.size(festivalPaged) > 0} "
+                        th:each="pageNumber : ${pageNumbers}" th:classappend="${pageNumber==selectedPage+1} ? active">
+                        <a th:href="@{/festival/listVentaPaginada?page={sele}(sele=${pageNumber-1})}"
+                           th:text=${pageNumber}
+                           th:class="pagination-button ">
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+</body>
+</html>

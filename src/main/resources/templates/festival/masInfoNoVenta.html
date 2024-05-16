@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragmentos/base}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información festivales no a la venta</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="pagina_generica ">
+
+        <div class="pagina_generica margen_encabezados table_create campo_de_lista">
+
+            <div th:each="festival: ${festival}">
+
+                <h1 th:text="${festival.nombre}" class="margen_encabezados"></h1>
+
+            </div>
+            <table>
+
+                <tr th:each="festival: ${festival}">
+                    <th>Localización</th>
+                    <td th:text="${festival.localizacion}"></td>
+                </tr>
+
+                <tr th:each="festival: ${festival}">
+                    <th>Tipo</th>
+                    <td th:text="${festival.tipoFestival}"></td>
+                </tr>
+
+                <tr th:each="festival: ${festival}">
+                    <th>Descripción</th>
+                    <td th:text="${festival.descripcion}"></td>
+                </tr>
+
+                <tr th:each="festival: ${festival}">
+                    <th>Audiencia</th>
+                    <td th:text="${festival.audiencia}"></td>
+                </tr>
+
+                <tr th:each="festival: ${festival}">
+                    <th>Capacidad</th>
+                    <td th:text="${festival.capacidad}"></td>
+                </tr>
+
+                <tr th:each="festival: ${festival}">
+                    <th>Edad minima</th>
+                    <td th:text="${festival.minimoEdad}"></td>
+                </tr>
+
+                <tr th:each="festival: ${festival}">
+                    <th>Fecha Inicio</th>
+                    <td th:text="${festival.fechaIni}"></td>
+                </tr>
+
+                <tr th:each="festival: ${festival}">
+                    <th>Fecha Fin</th>
+                    <td th:text="${festival.fechaFin}"></td>
+                </tr>
+
+            </table>
+
+            <a href="#" onclick="history.go(-1)" class="margen_encabezados">
+                <button type="button" class="login__button form_buton_space">Volver</button>
+            </a>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

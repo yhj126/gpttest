@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar entradas</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<style>
+    .center{
+        display: flex;
+        align-items: center;
+        text-align: center;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+</style>
+<body>
+<br>
+<div class="center">
+    <h1>Lista de entradas</h1>
+    <table class="table">
+        <thead class="table-info">
+        <tr>
+            <th>Numero entrada</th>
+            <th>Precio</th>
+            <th>ID Pedido</th>
+            <th>Tipo Entrada</th>
+            <th>Nombre festival</th>
+            <th ></th>
+            <th ></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="entrada: ${entradas}">
+            <td th:text="${entrada.numero}"></td>
+            <td th:text="${entrada.precio}"></td>
+            <td th:text="${entrada.idPedido}"></td>
+            <td th:text="${entrada.tipo}"></td>
+            <td th:text="${entrada.nombreFestival}"></td>
+            <td ><a th:href="@{/Old/entrada/update/{numero}(numero=${entrada.numero})}">
+                <button type="button" class="btn btn-secondary">Editar</button>
+            </a>
+            </td>
+            <td><a th:href="@{/Old/entrada/delete/{numero}(numero=${entrada.numero})}">
+                <button type="button" class="btn btn-primary">Eliminar</button>
+            </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <a href="add">
+            <button type="button" class="login__button ">Añadir entrada</button>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar tipos de entrada</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<style>
+    .center{
+        display: flex;
+        align-items: center;
+        text-align: center;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+</style>
+<body>
+<br>
+<div class="center">
+    <h1>Lista de tipos de entradas</h1>
+    <table class="table">
+        <thead class="table-info">
+        <tr>
+            <th>Nombre festival</th>
+            <th>Tipo</th>
+            <th>Precio</th>
+            <th>Dia</th>
+            <th>Descuento</th>
+            <th>Duracion</th>
+            <th ></th>
+            <th ></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tipo: ${tipoEntradas}">
+            <td th:text="${tipo.nombreFestival}"></td>
+            <td th:text="${tipo.tipo}"></td>
+            <td th:text="${tipo.precio}"></td>
+            <td th:text="${tipo.dia}"></td>
+            <td th:text="${tipo.descuento}"></td>
+            <td th:text="${tipo.tipoDuracion}"></td>
+            <td ><a th:href="@{/Old/tipoEntrada/update/{tipo}/{nombreFestival}(tipo=${tipo.tipo},nombreFestival=${tipo.nombreFestival})}">
+                <button type="button" class="btn btn-secondary">Editar</button>
+            </a>
+            </td>
+            <td><a th:href="@{/Old/tipoEntrada/delete/{tipo}/{nombreFestival}(tipo=${tipo.tipo},nombreFestival=${tipo.nombreFestival})}">
+                <button type="button" class="btn btn-primary">Eliminar</button>
+            </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <a href="add">
+            <button type="button" class="btn btn-info">Añadir tipo de entrada</button>
+        </a>
+        <a href="/static">
+            <button type="button" class="btn btn-info">Volver</button>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

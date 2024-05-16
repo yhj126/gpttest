@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" th:lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!--CSS only-->
+    <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="/css/styles.css" th:href="@{/css/styles.css}">
+    <!--icons-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<body>
+<header>
+    <div class="contenedor">
+        <!--Logo de TotFest-->
+        <div class="imagen_de_login">
+            <div class="logreg_box">
+                <a href="../">
+                    <i class='bx bx-arrow-back login__icon'></i>
+                </a>
+                <p class="logo">Totfest</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="pagina_generica margen_encabezados contenedor">
+    <div class="login__content">
+        <div class="login__forms">
+            <!--action="#-->
+            <form th:action="@{/login}"
+                  th:object="${user}" method="post" class="login__register">
+                <h1 class="login_title"> Acceso </h1>
+
+                <div class="login_box1">
+                    <div>
+                        <i class='bx bx-at login__icon'></i>
+                        <input type="text" placeholder="Correo electronico" class="login_input" th:field="*{username}">
+                    </div>
+
+                    <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+                </div>
+
+                <div class="login_box1">
+                    <div >
+                        <i class='bx bx-lock-alt login__icon'></i>
+                        <input type="password" placeholder="Contraseña" class="login_input" th:field="*{password}">
+                    </div>
+                    <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                </div>
+
+                <input type="submit" value="Acceder" class="login__button">
+
+                <div>
+                        <span class="login__account">
+                            ¿No tienes una cuenta?
+                        </span>
+                    <span class="login_signin" id="sign-up">
+                            <a href="/usuarioRegistrado/add">Registrate</a>
+
+                        </span>
+                </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

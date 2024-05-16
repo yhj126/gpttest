@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragmentos/base}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Artistas</title>
+
+    <!--icons-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="pagina_generica margen_encabezados contenedor">
+        <div class="login__content">
+            <div class="login__forms">
+                <form class="login__register" action="#" th:action="@{/artista/update}"
+                      th:object="${artista}" method="post">
+
+                    <h1 class="login_title "> Modificación del artista </h1>
+
+                    <!-- Id-->
+                    <div class="compra_field">
+                        <p class="login_input">ID</p>
+                        <div class="login_box">
+                            <input type="number"
+                                   class="login_input" th:field="${artista.id}" readonly/>
+                        </div>
+                    </div>
+
+                    <!--Nombre-->
+
+                    <div class="compra_field">
+                        <p class="login_input">Nombre</p>
+                        <div class="login_box">
+                            <input maxlength="30" type="text" th:field="*{nombre}" readonly class="login_input"/>
+                        </div>
+                    </div>
+
+                    <!--Tipo de Música-->
+
+                    <div class="compra_field">
+                        <p class="login_input">Tipo de Música</p>
+
+                        <div class="login_box">
+                            <select class="login_input">
+                                <option th:each="tipoMusica: ${tipoMusicaList}"
+                                        th:value="${tipoMusica}"
+                                        th:text="${tipoMusica}">
+                                </option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <!--Biografía-->
+
+                    <div class="compra_field">
+                        <p class="login_input">Nombre</p>
+                        <div class="login_box">
+                            <input maxlength="50" type="text" th:field="*{biografia}" class="login_input" required/>
+                        </div>
+                    </div>
+
+                    <!--Caché-->
+
+                    <div class="compra_field">
+                        <p class="login_input">Caché</p>
+                        <div class="login_box">
+                            <input type="number" min="0" max="100" maxlength="" th:field="*{cache}" step="0.01" class="login_input" required/>
+                        </div>
+                    </div>
+
+                    <input type="submit" value="Actualizar datos" class="login__button">
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

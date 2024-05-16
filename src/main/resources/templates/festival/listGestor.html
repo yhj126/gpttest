@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragmentos/base}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Pagina Gestor</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<br>
+<div layout:fragment="content">
+
+    <div class="pagina_generica">
+        <!-- titulo y barra de busqueda-->
+        <h1 class="margen_encabezados">Lista de Festivales</h1>
+        <div class="table_create campo_de_lista_gestores">
+            <table class="table formu">
+                <thead class="table-info">
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="festival: ${festivales}">
+                    <td th:text="${festival.nombre}"></td>
+                    <td><a th:href="@{/festival/masInfoNoVenta/{nombre}(nombre=${festival.nombre})}" class="form_buton_align">
+                        <button type="button"  class="login__button form_buton_space ">Más info.</button>
+                    </a>
+                    </td>
+                    <td><a th:href="@{/actuacion/listActuaciones/{nombre}/{idArtista}(nombre=${festival.nombre}, idArtista=${idArtista})}" class="form_buton_align">
+                        <button type="button"  class="login__button form_buton_space ">Actuaciones</button>
+                    </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Crear nuevo contrato</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<style>
+    .center-screen {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+    .formulario{
+        display: inline-block;
+        text-align: left;
+    }
+    input[type=submit]{
+        background-color: #53a453;
+        border-radius: 5px ;
+        border-color: #53a453;
+        color: white;
+        padding: 6px 16px;
+        text-decoration: none;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+</style>
+<body>
+<br>
+<div class="center-screen">
+    <h2>Añadir nuevo contrato</h2>
+    <form class="formulario" action="#" th:action="@{/Old/contrato/add}"
+          th:object="${contrato}" method="post">
+        <table>
+            <tr>
+                <td><label>Tasa </label></td>
+                <td><input type="number" th:field="*{tasa}" step="0.01" required/></td>
+            </tr>
+            <tr>
+                <td><label>Firma </label></td>
+                <td><input type="date" th:field="*{fechaFirma}" required/></td>
+            </tr>
+            <tr>
+                <td><label>Inicio </label></td>
+                <td><input type="date" th:field="*{fechaIni}" required /></td>
+            </tr>
+            <tr>
+                <td><label>Fin </label></td>
+                <td><input type="date" th:field="*{fechaFin}" required /></td>
+            </tr>
+            <tr>
+                <td><label>Número de Actuaciones </label></td>
+                <td><input min="1" type="number" th:field="*{numActuaciones}" required /></td>
+            </tr>
+            <tr>
+                <td><label>Descripción </label></td>
+                <td><input max="100" type="text" th:field="*{descripcion}" required /></td>
+            </tr>
+            <tr>
+                <td><label>Id Artista</label></td>
+                <td><input type="number" th:field="*{idArtista}" required/></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Agregar contrato" /></td>
+                <td><a href="list"><button type="button" class="btn btn-danger">Cancelar</button></a></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

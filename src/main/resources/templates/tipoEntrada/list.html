@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragmentos/base}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipos de entrada</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <div class="pagina_generica">
+
+        <!--lista de elementos-->
+
+        <div class="table_create campo_de_lista_gestores margen_encabezados">
+            <div th:if="${#lists.isEmpty(tipoEntradas)}">
+                No hay tipos disponibles de este festival
+            </div>
+            <table class="table formu" th:unless="${#lists.isEmpty(tipoEntradas)}">
+
+                <!--*******************************encabezados de la tabla**********************************-->
+
+                <thead >
+                <tr>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Descuento</th>
+                    <th scope="col">Duracion</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+
+                <!--*******************************elementos de la tabla**********************************-->
+
+                <tbody>
+                <tr th:each="tipo: ${tipoEntradas}">
+                    <td th:text="${tipo.tipo}"></td>
+                    <td th:text="${tipo.precio}"></td>
+                    <td th:text="${tipo.descuento}"></td>
+                    <td th:text="${tipo.tipoDuracion}"></td>
+                    <td>
+                        <div class="form_buton_align">
+                            <a th:href="@{/pedido/comprar/{tipo}/{nombreFestival}/{precio}(tipo=${tipo.tipo},nombreFestival=${tipo.nombreFestival}, precio=${tipo.precio})}">
+                                <button type="button" class="login__button form_buton_space">Selecionar</button>
+
+
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

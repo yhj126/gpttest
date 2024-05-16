@@ -1,0 +1,449 @@
+/*Google fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/*CSS variables*/
+:root {
+    /*******************************COLORS**********************************/
+
+    --first-color: #ff9020;
+    --first-color-dark: #181010;
+    --first-color-light: #bb9679;
+    --first-color-lighten: #e9e6e6;
+    --first-color-styles:  #553817;
+    --second-color:  #a9a49f;
+
+
+    /*****************************typography*******/
+    --body-font: "Poppins", sans-serif;
+    --title-font-size: 2.5rem;
+    --h1-font-size: 1.5rem;
+    --normal-font-size: .938rem;
+    --small-font-size: .813rem;
+}
+
+
+/*Estilos para el contenedor del encabezado*/
+
+.contenedor,
+.contenedor_formularios{
+    min-width: 700px;
+    margin: auto;
+}
+.contenedor_formularios{
+    display: flex;
+    align-items: flex-start;
+}
+/*CSS Reset*/
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+/*Base*/
+body {
+    background-image: url("unnamed.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    
+}
+
+
+h1 {
+    margin: 0;
+}
+h4{
+    font-size: 1.25rem;
+}
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+header{
+    background-color: var(--first-color-lighten);
+}
+
+header .marca{
+    padding: 0;
+}
+
+header .logo {
+    margin: 5px;
+    font-weight:bold;
+    font-size: 24px;
+}
+
+header .container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav{
+    display:grid;
+    grid-template-columns:max-content 1fr;
+    column-gap: .5rem;
+    margin-right: 20px;
+}
+.list_no_points{
+    list-style-type: none;
+}
+
+.logreg_box{
+    display:grid;
+    grid-template-columns:max-content 1fr;
+    column-gap: .5rem;
+    margin-left: 20px;
+}
+
+
+
+
+
+
+/*Login*/
+
+
+.login,
+.centrarContenido,
+.login_formularios,
+.pagina_generica {
+    display: flex;
+
+    grid-template-columns: 100%;
+    height: 100vh;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+.login,
+.centrarContenido,
+.pagina_generica{
+    align-items: center
+}
+
+.login,
+.login_formularios,
+.centrarContenido {
+    justify-content: center;
+}
+
+.centrarContenido,
+.pagina_generica {
+    flex-direction: column;
+}
+
+
+.login__content {
+    display: grid;
+    width: 50%;
+}
+
+.content_button {
+    display: grid;
+    width: 20%;
+}
+
+.login_image {
+    justify-self: center;
+}
+
+.imagen_de_login{
+    display:block;
+    padding: 1rem;
+}
+
+
+.login_image img {
+    width: 310px;
+    margin-top: 1.5rem;
+}
+
+.login__forms {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrar verticalmente */
+}
+
+.login__register,
+.login__create {
+    position: relative;
+    margin: 20px;
+    bottom: 1rem;
+    width: 100%;
+    background-color: var(--first-color-lighten);
+    padding: 2rem 1rem;
+    border-radius: 1rem;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(35, 0, 77.2);
+}
+
+.totfest__title {
+    font-size: var(--title-font-size);
+}
+
+.margin {
+    margin-bottom: 2rem;
+}
+
+.login__title {
+    font-size: var(--h1-font-size);
+    margin-bottom: 2rem;
+}
+.login_box1{
+    grid-template-columns:max-content 1fr;
+}
+.login_box,
+.login_box1{
+    display: grid;
+    column-gap: .5rem;
+    padding: 1.125rem 1rem;
+    background-color: white;
+    margin-top: 1rem;
+    border-radius: .5rem;
+}
+
+.login__icon{
+    font-size: 1.8rem;
+    color: var(--first-color-styles);
+    background-color: var(--first-color-lighten);
+    border-radius: 5rem;
+}
+
+
+
+.login_input {
+    border: none;
+    outline: none;
+    font-size: var(--first-color-dark);
+    font-weight: 700;
+    color: var(--first-color-dark)
+}
+
+.login_input::placeholder {
+    font-size: 14px; /*var(--normal-font-size);*/
+    font-family: var(--body-font);
+    color: var(--first-color-light);
+}
+
+.login_forgot {
+    display: block;
+    width: max-content;
+    margin-left: auto;
+    margin-top: .5rem;
+    font-size: var(--small-font-size);
+    font-weight: 600;
+    color: var(--first-color-light);
+}
+
+
+.login__button, .signup__button, .username {
+    display:block;
+    padding: 1rem;
+    margin:1rem 0;
+    font-weight:600;
+    text-align: center;
+    border-radius: .5rem;
+    transition:.3s;
+}
+.signup__button{
+    background-color:var(--second-color);
+    border-color:var(--first-color-styles);
+    color: var(--first-color-styles);
+    border:  1px solid currentColor;
+}
+.login__button{
+    background-color: var(--first-color-styles);
+    color: white;
+}
+
+.login__button {
+    width: 100%;
+}
+
+.login__button:hover {
+    background-color: var(--first-color-dark);
+}
+
+.login__account,
+.login_signin,
+.login_signup {
+    font-weight: 600;
+    font-size: var(--small-font-size);
+}
+
+.login__account {
+    color: var(--first-color-dark);
+}
+
+.login_signin,
+.login_signup {
+    color: var(--first-color-styles);
+    cursor: pointer;
+}
+
+.login_social-icon {
+    font-size: 1.5rem;
+    color: var(--first-color-dark);
+    margin: 0 1.5rem;
+}
+
+/*show login*/
+.block {
+    display: block;
+}
+
+/*hide login*/
+.none {
+    display: none;
+}
+
+
+.campo_de_lista,
+.campo_de_lista_gestores{
+    position: relative;
+
+    min-width: 600px;
+    height: auto;
+}
+.campo_de_lista{
+    min-height: 400px;
+    width: 70%;
+}
+
+.margen_encabezados {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.formu {
+    clear: both;
+}
+
+.table_create {
+    background-color: var(--first-color-lighten);
+    box-shadow: 0 8px 20px rgba(35, 0, 77.2);
+}
+/*barra de busqueda*/
+
+.search-bar {
+    width:  500px;
+    padding: 10px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+}
+.form_buton_space{
+    width: 120px;
+}
+.compra_field{
+    text-align: left;
+}
+
+
+
+/**************tablas*************/
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+/* Bordes horizontales para las celdas */
+.table th,
+.table td {
+    padding: 0.75rem;
+}
+.table td{
+    border-top: 1px solid var(--second-color);
+}
+/* Bordes para la parte superior de la tabla */
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+
+/* Estilos para filas activas */
+.table-active,
+.table-active > th,
+.table-active > td {
+    background-color: rgba(0, 0, 0, 0.075);
+}
+
+/* Estilos para el encabezado de la tabla */
+.table thead th {
+    background-color: #f8f9fa;
+    border-bottom-width: 1px;
+}
+
+/* Estilos para las celdas y filas de la tabla */
+.table-primary,
+.table-primary > th,
+.table-primary > td {
+    background-color: #b8daff;
+}
+.form_buton_align{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+.pagination-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination-button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    border-radius: 1rem;
+    border: 2px solid var(--first-color-styles);
+    background-color: var(--first-color-lighten);
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.orientacion_izq{
+    text-align: left;
+}
+
+/* Modal Content */
+.modal-content {
+    margin: auto;
+    padding: 20px;
+    width: 40%;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top:100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+

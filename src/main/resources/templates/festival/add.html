@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragmentos/base}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Crear nuevo festival</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--icons-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <div class="pagina_generica margen_encabezados contenedor">
+        <div class="login__content">
+            <div class="login__forms">
+                <form class="login__register" action="#" th:action="@{/festival/add}"
+                      th:object="${festival}" method="post">
+                    <h1 class="login_title">Añadir nuevo festival</h1>
+
+                    <!--Nombre-->
+                    <div class="compra_field">
+                        <p class="login_input">Nombre</p>
+                        <div class="login_box">
+                            <input max="30" type="text" th:field="*{nombre}"
+                                   placeholder="ej. Festival 1" class="login_input" required/>
+                        </div>
+                    </div>
+
+                    <!--Localización-->
+
+                    <div class="compra_field">
+                        <p class="login_input">Localización</p>
+                        <div class="login_box">
+                            <input max="20" type="text" th:field="*{localizacion}"
+                                   placeholder="ej. Valencia" class="login_input" required/>
+                        </div>
+                    </div>
+
+                    <!--Tipo de Fest-->
+
+                    <div class="compra_field">
+                        <p class="login_input">Tipo </p>
+
+                        <div class="login_box">
+                            <select th:field="*{tipoFestival}" class="login_input">
+                                <option th:each="tipoFestival: ${tipoFestivalList}"
+                                        th:value="${tipoFestival}"
+                                        th:text="${tipoFestival}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!--Descripción-->
+
+                    <div class="compra_field">
+                        <p class="login_input">Descripción</p>
+                        <div class="login_box">
+                            <input maxlength="100" type="text" th:field="*{descripcion}"
+                                   placeholder="ej. En este festival se toca musica" class="login_input" required/>
+                        </div>
+                    </div>
+
+                    <!--Audiencia-->
+
+                    <div class="compra_field">
+                        <p class="login_input">Tipo </p>
+
+                        <div class="login_box">
+                            <select th:field="*{audiencia}" class="login_input">
+                                <option th:each="tipoAudiencia: ${tipoAudienciaList}"
+                                        th:value="${tipoAudiencia}"
+                                        th:text="${tipoAudiencia}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!--Capacidad-->
+
+                    <div class="compra_field">
+                        <p class="login_input">Capacidad</p>
+                        <div class="login_box">
+                            <input min="1" type="number" th:field="*{capacidad}"
+                                   class="login_input" required/>
+                        </div>
+                    </div>
+
+
+                    <!--Min Age-->
+
+                    <div class="compra_field">
+                        <p class="login_input">Edad mínima</p>
+                        <div class="login_box">
+                            <input min="18" type="number" th:field="*{minimoEdad}"
+                                   class="login_input" required/>
+                        </div>
+                    </div>
+
+                    <!--Comprable?-->
+
+                    <div class="compra_field">
+                        <p class="login_input">En venta </p>
+
+                        <div class="login_box">
+                            <select class="login_input" th:field="*{enVenta}">
+                                <option value='false'>No</option>
+                                <option value='true'>Si</option>
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!--Inicio y fin-->
+
+                    <div class="compra_field">
+                        <p class="login_input">Fecha de inicio</p>
+                        <div class="login_box">
+                            <input type="date" th:field="*{fechaIni}"
+                                   class="login_input" required/>
+                        </div>
+                    </div>
+
+                    <div class="compra_field">
+                        <p class="login_input">Fecha de fin</p>
+                        <div class="login_box">
+                            <input type="date" th:field="*{fechaFin}"
+                                   class="login_input" required/>
+                        </div>
+                    </div>
+
+                    <input type="submit" value="Agregar festival" class="login__button"/></td>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

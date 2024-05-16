@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Modificar pedido</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<style>
+    .center-screen {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+
+    .formulario {
+        display: inline-block;
+        text-align: left;
+    }
+    input[type=submit]{
+        background-color: #53a453;
+        border-radius: 5px ;
+        border-color: #53a453;
+        color: white;
+        padding: 6px 16px;
+        text-decoration: none;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+</style>
+<body>
+<br>
+<div class="center-screen">
+    <h2>Modificación del pedido</h2>
+    <form class="formulario" action="#" th:action="@{/Old/pedido/update}"
+          th:object="${pedido}" method="post">
+        <table>
+            <tr>
+                <td><label>ID</label></td>
+                <td><input type="number" th:field="*{idPedido}" required readonly /></td>
+            </tr>
+            <tr>
+                <td><label>Correo</label></td>
+                <td><input type="email" th:field="*{correo}" required/></td>
+            </tr>
+            <tr>
+                <td><label>Fecha</label></td>
+                <td><input type="date" th:field="*{fecha}" required/></td>
+            </tr>
+            <tr>
+                <td><label>Cantidad de entradas</label></td>
+                <td><input min="1" type="number" th:field="*{cantidadEntradas}" required /></td>
+            </tr>
+            <tr>
+                <td><label>IdUsuario</label></td>
+                <td><input max="50" type="text" th:field="*{idUsuario}" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Modificar pedido" /></td>
+                <td><a href="../list"><button type="button" class="btn btn-danger">Cancelar</button></a></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

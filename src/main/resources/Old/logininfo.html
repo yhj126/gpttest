@@ -1,0 +1,12 @@
+<div class="loggeduser" th:object="${session}" xmlns:th="http://www.thymeleaf.org">
+    <p th:if="*{user == null}">
+        No autenticado<a href="/login" th:href="@{/login}">Autenticate</a>
+        <a href="/login" th:href="@{/registrar}">Registrate</a>
+
+    </p>
+
+    <p th:unless="*{user == null}">
+        <span th:text="*{user.username}"></span>
+        <a href="/logout" th:href="@{/logout}">Salir</a>
+    </p>
+</div>

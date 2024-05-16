@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TotFest</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
+</head>
+<body>
+<header>
+    <div class="container">
+        <!--Logo de TotFest-->
+        <div class="logreg_box">
+            <p class="logo">Totfest</p>
+        </div>
+        <div th:insert="~{fragmentos/nav}"></div>
+    </div>
+
+</header>
+    <div class="pagina_generica">
+        <h1 class="totfest__title margen_encabezados" >Bienvenido a Totfest </h1>
+        <h4 class="margin"> Festivales y mucho más...</h4>
+        <div class="content_button">
+            <a href="festival/listVentaPaginada" class="login__button">Festivales a la venta</a>
+            <a href="festival/listNoVenta" class="login__button">Próximos</a>
+        </div>
+    </div>
+</body>
+</html>

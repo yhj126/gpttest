@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar Artista</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<style>
+    .center{
+        display: flex;
+        align-items: center;
+        text-align: center;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+</style>
+<body>
+<br>
+<div class="center">
+    <h1>Lista de Artistas</h1>
+    <table class="table">
+        <thead class="table-info">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Tipo de Música</th>
+            <th>Biografía</th>
+            <th>Caché</th>
+            <th ></th>
+            <th ></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="artista: ${artistas}">
+            <td th:text="${artista.id}"></td>
+            <td th:text="${artista.nombre}"></td>
+            <td th:text="${artista.tipoMusica}"></td>
+            <td th:text="${artista.biografia}"></td>
+            <td th:text="${artista.cache}"></td>
+
+            <td ><a th:href="@{/Old/artista/update/{id}(id=${artista.id})}">
+                <button type="button" class="btn btn-secondary">Editar</button>
+            </a>
+            </td>
+            <td><a th:href="@{/Old/artista/delete/{id}(id=${artista.id})}">
+                <button type="button" class="btn btn-primary">Eliminar</button>
+            </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <a href="add">
+            <button type="button" class="btn btn-info">Añadir Artista</button>
+        </a>
+        <a href="/static">
+            <button type="button" class="btn btn-info">Volver</button>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

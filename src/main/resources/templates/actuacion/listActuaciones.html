@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragmentos/base}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar Actuación</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="pagina_generica">
+        <!-- titulo y barra de busqueda-->
+        <h1 class="margen_encabezados" th:text="${'Actuaciones del festival ' + festival}"></h1>
+        <div>
+            <div class="margin">
+                <div class="orientacion_izq ">
+                    <h4 th:text="${'Actuaciones de '+nombreArtista+' en ' + festival}"></h4>
+                    <div th:if="${#lists.isEmpty(actuacionesArtista)}">
+                        No hay actuaciones de este artista en este festival.
+                    </div>
+                </div>
+
+
+                <div class="table_create campo_de_lista_gestores">
+                    <table class="table formu" th:unless="${#lists.isEmpty(actuacionesArtista)}">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Inicio Actuación</th>
+                            <th scope="col">Fin Actuación</th>
+                            <th scope="col">Fecha Actuación</th>
+                            <th scope="col">Lugar</th>
+                            <th scope="col">Precio Contrato</th>
+                            <th scope="col">Nombre Festival</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="actuacionArtista: ${actuacionesArtista}">
+                            <td th:text="${actuacionArtista.id}"></td>
+                            <td th:text="${actuacionArtista.inicioActuacion}"></td>
+                            <td th:text="${actuacionArtista.finActuacion}"></td>
+                            <td th:text="${actuacionArtista.fechaActuacion}"></td>
+                            <td th:text="${actuacionArtista.lugar}"></td>
+                            <td th:text="${actuacionArtista.precioContrato}"></td>
+                            <td th:text="${actuacionArtista.nombreFestival}"></td>
+                            <td>
+                                <a th:href="@{/actuacion/cancelarContratoVigenteArtista/{idArtista}/{idActuacion}(idArtista=${idArtista}, idActuacion = ${actuacionArtista.id})}"
+                                   class="form_buton_align">
+                                    <button type="button" class="login__button form_buton_space">Cancelar
+                                        participación
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="margin">
+                <div class="orientacion_izq ">
+
+                    <h4 th:text="${'Actuaciones sin artista en ' + festival + ' en las que podría participar '+ nombreArtista}"></h4>
+                    <div th:if="${#lists.isEmpty(actuacionesPosibles)}">
+                        El contrato de este artista no permite su participación en ninguna de las actuaciones
+                        disponibles.
+                    </div>
+                </div>
+
+
+                <div class="table_create campo_de_lista_gestores">
+                    <table class="table formu" th:unless="${#lists.isEmpty(actuacionesPosibles)}">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Inicio Actuación</th>
+                            <th scope="col">Fin Actuación</th>
+                            <th scope="col">Fecha Actuación</th>
+                            <th scope="col">Lugar</th>
+                            <th scope="col">Precio Contrato</th>
+                            <th scope="col">Nombre Festival</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="actuacionPosible: ${actuacionesPosibles}">
+                            <td th:text="${actuacionPosible.id}"></td>
+                            <td th:text="${actuacionPosible.inicioActuacion}"></td>
+                            <td th:text="${actuacionPosible.finActuacion}"></td>
+                            <td th:text="${actuacionPosible.fechaActuacion}"></td>
+                            <td th:text="${actuacionPosible.lugar}"></td>
+                            <td th:text="${actuacionPosible.precioContrato}"></td>
+                            <td th:text="${actuacionPosible.nombreFestival}"></td>
+                            <td>
+                                <a th:href="@{/actuacion/contratoVigenteArtista/{idArtista}/{idActuacion}(idArtista=${idArtista}, idActuacion = ${actuacionPosible.id})}" class="form_buton_align">
+                                    <button type="button" class="login__button form_buton_space">Participar</button>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="margin">
+                <div class="orientacion_izq ">
+
+                    <h4 th:text="${'Actuaciones sin artista en ' + festival + ' en las que no podría participar ' + nombreArtista + ' por las fechas del contrato'}"></h4>
+                    <div th:if="${#lists.isEmpty(actuacionesNoPosibles)}">
+                        Todas las actuaciones ya tienen asignado un artista o el artista puede participar en ellas.
+                    </div>
+
+
+                </div>
+
+
+                <div class="table_create campo_de_lista_gestores">
+                    <table class="table formu" th:unless="${#lists.isEmpty(actuacionesNoPosibles)}">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Inicio Actuación</th>
+                            <th scope="col">Fin Actuación</th>
+                            <th scope="col">Fecha Actuación</th>
+                            <th scope="col">Lugar</th>
+                            <th scope="col">Precio Contrato</th>
+                            <th scope="col">Nombre Festival</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="actuacionNoPosible: ${actuacionesNoPosibles}">
+                            <td th:text="${actuacionNoPosible.id}"></td>
+                            <td th:text="${actuacionNoPosible.inicioActuacion}"></td>
+                            <td th:text="${actuacionNoPosible.finActuacion}"></td>
+                            <td th:text="${actuacionNoPosible.fechaActuacion}"></td>
+                            <td th:text="${actuacionNoPosible.lugar}"></td>
+                            <td th:text="${actuacionNoPosible.precioContrato}"></td>
+                            <td th:text="${actuacionNoPosible.nombreFestival}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

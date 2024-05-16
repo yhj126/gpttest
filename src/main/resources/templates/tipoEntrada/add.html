@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragmentos/base}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Crear nuevo Tipo entrada</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--icons-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="pagina_generica margen_encabezados contenedor">
+        <div class="login__content">
+            <div class="login__forms">
+                <form class="login__register" action="#" th:action="@{/tipoEntrada/add}"
+                      th:object="${tipoEntrada}" method="post">
+                    <h1 th:text="${'Añadir nuevo tipo de entrada del festival ' + festival}"
+                        class="margen_encabezados"></h1>
+
+                    <!--Tipo-->
+                    <div class="compra_field">
+                        <p class="login_input">Tipo</p>
+                        <div class="login_box">
+                            <select th:field="*{tipo}">
+                                <option th:each="tipo: ${tipoEntradaList}"
+                                        th:value="${tipo}"
+                                        th:text="${tipo}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!--Precio-->
+                    <div class="compra_field">
+                        <p class="login_input">Precio</p>
+                        <div class="login_box">
+                            <input min="0" type="number" th:field="*{precio}" step="0.01" class="login_input" required/>
+                        </div>
+                    </div>
+
+                    <!--Tipo de duración-->
+                    <div class="compra_field">
+                        <p class="login_input">Tipo de duración</p>
+                        <div class="login_box">
+                            <select th:field="*{tipoDuracion}">
+                                <option th:each="tipoduracion: ${tipoDuracionList}"
+                                        th:value="${tipoduracion}"
+                                        th:text="${tipoduracion}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!--Descuento-->
+                    <div class="compra_field">
+                        <p class="login_input">Descuento</p>
+                        <div class="login_box">
+                            <input min="0" type="number" th:field="*{descuento}" step="0.01" class="login_input"
+                                   required/>
+                        </div>
+                    </div>
+                    <input type="submit" value="Añadir tipo entrada" class="login__button"/>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
